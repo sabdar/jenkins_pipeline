@@ -9,7 +9,7 @@ pipeline {
                 label "sabdar_pc"
             }
             steps {
-                git checkout master
+                bat 'git checkout main'
                 bat 'pwd'
                 echo "Hello sabdar"
             }
