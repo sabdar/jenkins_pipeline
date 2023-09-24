@@ -10,7 +10,7 @@ pipeline {
             }
             steps {
                 bat 'git checkout main'
-                bat 'pwd'
+                bat 'dir'
                 echo "Hello sabdar"
             }
         }
