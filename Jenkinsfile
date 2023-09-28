@@ -29,7 +29,10 @@ pipeline {
                 load "scripts/test.groovy"
                 bat 'dir'
                 echo "Hello sabdar"
-                sayHello()
+                script{
+                    test.sayHello()
+                }
+                
             }
         }
         stage("ubuntu"){
@@ -40,7 +43,10 @@ pipeline {
                 unstash "scripts"
                 load "scripts/test.groovy"
                 echo "Hello ubuntu"
-                sayBye()
+                script{
+                    test.sayBye()
+                }
+              
             }
         }
     }
