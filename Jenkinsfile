@@ -25,7 +25,7 @@ pipeline {
                 label "sabdar_pc"
             }
             steps {
-                unstash "scripts"
+                // unstash "scripts"
                 load "scripts/test.groovy"
                 bat 'dir'
                 echo "Hello sabdar"
