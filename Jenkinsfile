@@ -16,9 +16,10 @@ pipeline {
                 label "sabdar_pc"
             }
             steps {
-                // bat 'git checkout main'
+                load "scripts/test.groovy"
                 bat 'dir'
                 echo "Hello sabdar"
+                sayHello()
             }
         }
         stage("ubuntu"){
@@ -26,7 +27,9 @@ pipeline {
                 label "ubuntu"
             }
             steps {
+                load "scripts/test.groovy"
                 echo "Hello ubuntu"
+                sayBye()
             }
         }
     }
