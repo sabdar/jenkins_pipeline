@@ -11,11 +11,21 @@ pipeline {
         skipDefaultCheckout()
     }
     stages{
+        stage("checkout"){
+            agent {
+                label "sabdar_pc"
+            }
+            steps {
+                git branch: 'main', credentialsId: 'jenkins_pipeline', url: 'git@github.com:sabdar/jenkins_pipeline.git'
+                stash name: 'scripts', includes: 'scripts/**'
+            }
+        }
         stage("windows"){
             agent {
                 label "sabdar_pc"
             }
             steps {
+                unstash "scripts"
                 load "scripts/test.groovy"
                 bat 'dir'
                 echo "Hello sabdar"
@@ -27,6 +37,7 @@ pipeline {
                 label "ubuntu"
             }
             steps {
+                unstash "scripts"
                 load "scripts/test.groovy"
                 echo "Hello ubuntu"
                 sayBye()
