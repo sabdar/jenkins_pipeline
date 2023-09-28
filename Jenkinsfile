@@ -26,11 +26,12 @@ pipeline {
             }
             steps {
                 // unstash "scripts"
-                myTest = load "scripts/test.groovy"
+                
           
                 bat 'dir'
                 echo "Hello sabdar"
                 script{
+                    def myTest = load "scripts/test.groovy"
                     myTest.sayHello()
                 }
                 
@@ -45,6 +46,7 @@ pipeline {
                 myTest =  load "scripts/test.groovy"
                 echo "Hello ubuntu"
                 script{
+                    def myTest = load "scripts/test.groovy"                 
                     myTest.sayBye()
                 }
               
