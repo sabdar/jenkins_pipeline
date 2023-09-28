@@ -21,13 +21,12 @@ pipeline {
             }
         }
         stage("windows"){
-            def myTest
             agent {
                 label "sabdar_pc"
             }
             steps {
                 // unstash "scripts"
-                myTest = load "scripts/test.groovy"
+                def myTest = load "scripts/test.groovy"
                 myTest.sayHello()
                 bat 'dir'
                 echo "Hello sabdar"
@@ -38,13 +37,12 @@ pipeline {
             }
         }
         stage("ubuntu"){
-            def myTest
             agent {
                 label "ubuntu"
             }
             steps {
                 unstash "scripts"
-                myTest =  load "scripts/test.groovy"
+                def myTest =  load "scripts/test.groovy"
                 myTest.sayBye()
                 echo "Hello ubuntu"
                 script{
