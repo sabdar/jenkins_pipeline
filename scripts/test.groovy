@@ -6,4 +6,4 @@ def sayBye() {
     println("Bye Bye")
 }
 
-return this
+return this;
