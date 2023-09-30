@@ -1,17 +1,10 @@
-#!/usr/bin/env groovy
-
-//write sample pipeline script for jenkins with 2 stages and agent label as "ubuntu"
-//add groovy script to read file in windows stage steps
-
-
-
 pipeline {
     agent none 
-     options {
+    options {
         skipDefaultCheckout()
     }
-    stages{
-        stage("checkout"){
+    stages {
+        stage("checkout") {
             agent {
                 label "sabdar_pc"
             }
@@ -20,33 +13,42 @@ pipeline {
                 stash name: 'scripts', includes: 'scripts/**'
             }
         }
-        stage("windows"){
+        stage("windows") {
             agent {
                 label "sabdar_pc"
             }
             steps {
                 // unstash "scripts"
+                script {
+                    def test = load "scripts/test.groovy"
+                    def text = test.returnHtml()
+                    echo text
+                    test.sendEmail()
+
+                }
                 bat 'dir'
                 echo "Hello sabdar"
-                script{
-                    def myTest = load "scripts/test.groovy"
-                    myTest.sayHello()
-                }
-                
             }
         }
-        stage("ubuntu"){
+        stage("ubuntu") {
             agent {
                 label "ubuntu"
             }
-            steps {
-                unstash "scripts"
-                echo "Hello ubuntu"
-                script{
-                    def myTest = load "scripts/test.groovy"                 
-                    myTest.sayBye()
+            stages {
+                stage("steps") {
+                    steps {
+                        unstash "scripts"
+                        script {
+                            def abc = load "scripts/test.groovy"
+                            abc.sayBye()
+                        }
+                    }
                 }
-              
+                stage("level2") {
+                    steps {
+                        echo "hello level2"
+                    }
+                }
             }
         }
     }

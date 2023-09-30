@@ -1,0 +1,6 @@
+{
+    "jenkins.pipeline.linter.connector.crumbUrl": "http://172.28.60.234:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,%22:%22,//crumb)",
+    "jenkins.pipeline.linter.connector.pass": "jenkins",
+    "jenkins.pipeline.linter.connector.url": "http://172.28.60.234:8080/pipeline-model-converter/validate",
+    "jenkins.pipeline.linter.connector.user": "jenkins"
+}
