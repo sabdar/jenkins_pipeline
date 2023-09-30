@@ -27,8 +27,8 @@ pipeline {
                 // unstash "scripts"
                 script {
                     def test = load "scripts/test.groovy"
-                    def text = test.returnHtml()
-                    echo text
+                    test.returnHtml()
+                  
                     test.sendEmail()
 
                 }
