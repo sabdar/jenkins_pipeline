@@ -1,6 +1,3 @@
-@Grab('org.codehaus.groovy.templates:groovy-templates:2.0.0')
-import groovy.text.TemplateEngine
-
 def engine = new TemplateEngine()
 def template = engine.createTemplate('<html><body><h1>${title}</h1><p>${content}</p></body></html>')
 def binding = [title: 'My Title', content: 'This is my content']
