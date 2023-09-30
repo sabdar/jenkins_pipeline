@@ -12,7 +12,7 @@ def returnHtml(){
 
 def sendEmail() {
     echo "Sending email"
-    emailext body: '''Hello there, 
+    emailext body: '''Hello there, how 
 please check your jenkins job build status''', subject: 'Jenkins Code Build Status', to: 'sabdar.143@gmail.com'    
 
     echo "Email sent"
