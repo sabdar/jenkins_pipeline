@@ -1,3 +1,15 @@
+@Grab('org.codehaus.groovy.templates:groovy-templates:2.0.0')
+import groovy.text.TemplateEngine
+
+def engine = new TemplateEngine()
+def template = engine.createTemplate('<html><body><h1>${title}</h1><p>${content}</p></body></html>')
+def binding = [title: 'My Title', content: 'This is my content']
+def result = template.make(binding).toString()
+
+
+
+
+
 def sayHello() {
     println("Hi I am from Groovy script")
 }
@@ -7,7 +19,7 @@ def sayBye() {
 }
 
 def returnHtml(){
-    return "<html><body><h1>Hello World</h1></body></html>"
+    writeFile file: 'output', text: result
 }
 
 def sendEmail() {
