@@ -63,7 +63,9 @@ pipeline {
     }
     post{
         always{
-            emailext body: 'ji', subject: 'hello test ', to: 'sabdar.143@gmail.com'
+            echo "I will always run"
+            emailext attachLog: true, body: 'ji', subject: 'hello test ', to: 'sabdar.143@gmail.com'
+            echo "Email sent"
         }
     }
 }
