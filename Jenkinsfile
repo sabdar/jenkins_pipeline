@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage("checkout") {
             when {
-                expression { return false}
+                expression { return true}
             }
             agent {
                 label "sabdar_pc"
@@ -18,7 +18,7 @@ pipeline {
         }
         stage("windows") {
             when {
-                expression { return false}
+                expression { return true}
             }
             agent {
                 label "sabdar_pc"
