@@ -52,4 +52,10 @@ pipeline {
             }
         }
     }
+    post{
+        always{
+            emailext body: '''Hello there, how 
+please check your jenkins job build status''', subject: 'Jenkins Code Build Status', to: 'sabdar.143@gmail.com' 
+        }
+    }
 }
