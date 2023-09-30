@@ -12,8 +12,8 @@ def returnHtml(){
 
 def sendEmail() {
     echo "Sending email"
-    emailext attachLog: true, body: '''Hello there, 
-please check your jenkins job build status''', recipientProviders: [contributor()], subject: 'Jenkins Code Build Status', to: 'sabdar.143@gmail.com'    
+    emailext body: '''Hello there, 
+please check your jenkins job build status''', subject: 'Jenkins Code Build Status', to: 'sabdar.143@gmail.com'    
 
     echo "Email sent"
 }
