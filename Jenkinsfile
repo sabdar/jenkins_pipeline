@@ -5,6 +5,9 @@ pipeline {
     }
     stages {
         stage("checkout") {
+            when {
+                expression { return false}
+            }
             agent {
                 label "sabdar_pc"
             }
@@ -14,6 +17,9 @@ pipeline {
             }
         }
         stage("windows") {
+            when {
+                expression { return false}
+            }
             agent {
                 label "sabdar_pc"
             }
@@ -31,6 +37,9 @@ pipeline {
             }
         }
         stage("ubuntu") {
+            when {
+                expression { return false}
+            }
             agent {
                 label "ubuntu"
             }
