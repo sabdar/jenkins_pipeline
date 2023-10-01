@@ -41,6 +41,9 @@ pipeline {
             agent {
                 label "ubuntu"
             }
+             environment {
+                ORCLE_CRED = credentials('cloud_oracle_db_hr')
+             }
             stages {
                 stage("steps") {
                     steps {
