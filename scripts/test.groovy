@@ -1,3 +1,5 @@
+
+
 def sayHello() {
     println("Hi I am from Groovy script")
 }
@@ -11,7 +13,10 @@ def executeSql(){
         def query = "SELECT * FROM EMPLOYEES"
         // def tns_path = sh(script: 'echo $TNS_ADMIN', returnStdout: true).trim()       
         // dir(tns_path){
-            def sqlplusCommand = "sqlplus -S $USERNAME/$PASSWORD@oci_high <<EOF\n${query}\nEOF"
+            def sqlplusCommand = """
+            source ~/.bashrc
+            sqlplus -S $USERNAME/$PASSWORD@oci_high <<EOF\n${query}\nEOF
+            """
             def result = sh(script: sqlplusCommand, returnStdout: true)
         // }
 
