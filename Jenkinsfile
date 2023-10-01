@@ -47,14 +47,7 @@ pipeline {
             stages {
                 stage("steps") {
                     steps {
-                        unstash "scripts"
-                        script {
-                            def abc = load "scripts/test.groovy"
-                           abc.sayBye()
-                           def query = "SELECT * FROM EMPLOYEES"
-        
-           
-                            sh """
+                        sh """
                             #!/bin/bash
                             echo "Hello from \$SHELL"
                             cat ~/.bashrc
@@ -62,6 +55,14 @@ pipeline {
                             sqlplus -version        
                             sqlplus -S $ORCLE_CRED_USR/$ORCLE_CRED_PSW@oci_high <<EOF\n${query}\nEOF | tee output.txt
                             """
+                        unstash "scripts"
+                        script {
+                            def abc = load "scripts/test.groovy"
+                           abc.sayBye()
+                           def query = "SELECT * FROM EMPLOYEES"
+        
+           
+                            
                             abc.executeSql()
                             abc.sendEmail()
 
