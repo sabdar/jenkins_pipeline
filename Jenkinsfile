@@ -28,9 +28,7 @@ pipeline {
                 script {
                     def test = load "scripts/test.groovy"
                     test.returnHtml()
-                    test.executeSql()
-                    test.sendEmail()
-
+                 
                 }
                 bat 'dir'
                 echo "Hello sabdar"
@@ -38,7 +36,7 @@ pipeline {
         }
         stage("ubuntu") {
             when {
-                expression { return false}
+                expression { return true}
             }
             agent {
                 label "ubuntu"
@@ -50,6 +48,9 @@ pipeline {
                         script {
                             def abc = load "scripts/test.groovy"
                             abc.sayBye()
+                            abc.executeSql()
+                            abc.sendEmail()
+
                         }
                     }
                 }
