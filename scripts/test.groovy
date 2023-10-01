@@ -13,6 +13,12 @@ def executeSql(){
         def query = "SELECT * FROM EMPLOYEES"
         // def tns_path = sh(script: 'echo $TNS_ADMIN', returnStdout: true).trim()       
         // dir(tns_path){
+            sh """#!/bin/bash
+                    echo "Hello from \$SHELL"
+                    cat ~/.bashrc
+                    source ~/.bashrc
+                    sqlplus --version
+                    """
             sh """
             #!/bin/bash
             source ~/.bashrc
