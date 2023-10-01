@@ -9,11 +9,11 @@ def sayBye() {
 def executeSql(){
     withCredentials([usernamePassword(credentialsId: 'cloud_oracle_db_hr', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
         def query = "SELECT * FROM EMPLOYEES"
-        def tns_path = sh 'echo $TNS_ADMIN'.trim()
-        dir(tns_path){
+        // def tns_path = sh(script: 'echo $TNS_ADMIN', returnStdout: true).trim()       
+        // dir(tns_path){
             def sqlplusCommand = "sqlplus -S $USERNAME/$PASSWORD@oci_high <<EOF\n${query}\nEOF"
             def result = sh(script: sqlplusCommand, returnStdout: true)
-        }
+        // }
 
         writeFile file: 'output.txt', text: result
         echo result
