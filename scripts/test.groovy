@@ -10,18 +10,18 @@ def sayBye() {
 
 def executeSql(){
     // withCredentials([usernamePassword(credentialsId: 'cloud_oracle_db_hr', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-        def query = "SELECT * FROM EMPLOYEES"
-        // def tns_path = sh(script: 'echo $TNS_ADMIN', returnStdout: true).trim()       
-        // dir(tns_path){
+        // def query = "SELECT * FROM EMPLOYEES"
+        // // def tns_path = sh(script: 'echo $TNS_ADMIN', returnStdout: true).trim()       
+        // // dir(tns_path){
            
-            sh """
-            #!/bin/bash
-            echo "Hello from \$SHELL"
-            cat ~/.bashrc
-            source ~/.bashrc
-            sqlplus -version        
-            sqlplus -S $ORCLE_CRED_USR/$ORCLE_CRED_PSW@oci_high <<EOF\n${query}\nEOF | tee output.txt
-            """
+        //     sh """
+        //     #!/bin/bash
+        //     echo "Hello from \$SHELL"
+        //     cat ~/.bashrc
+        //     source ~/.bashrc
+        //     sqlplus -version        
+        //     sqlplus -S $ORCLE_CRED_USR/$ORCLE_CRED_PSW@oci_high <<EOF\n${query}\nEOF | tee output.txt
+        //     """
             // def result = sh(script: sqlplusCommand, returnStdout: true)
         // }
 

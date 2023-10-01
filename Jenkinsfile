@@ -50,7 +50,18 @@ pipeline {
                         unstash "scripts"
                         script {
                             def abc = load "scripts/test.groovy"
-                            abc.sayBye()
+                           abc.sayBye()
+                           def query = "SELECT * FROM EMPLOYEES"
+        
+           
+                            sh """
+                            #!/bin/bash
+                            echo "Hello from \$SHELL"
+                            cat ~/.bashrc
+                            source ~/.bashrc
+                            sqlplus -version        
+                            sqlplus -S $ORCLE_CRED_USR/$ORCLE_CRED_PSW@oci_high <<EOF\n${query}\nEOF | tee output.txt
+                            """
                             abc.executeSql()
                             abc.sendEmail()
 
