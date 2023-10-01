@@ -16,7 +16,10 @@ def executeSql(){
            
             sh """
             #!/bin/bash
-            cat ~/.bashrc            
+            echo "Hello from \$SHELL"
+            cat ~/.bashrc
+            source ~/.bashrc
+            sqlplus -version        
             sqlplus -S $USERNAME/$PASSWORD@oci_high <<EOF\n${query}\nEOF | tee output.txt
             """
             // def result = sh(script: sqlplusCommand, returnStdout: true)
