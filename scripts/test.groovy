@@ -6,6 +6,16 @@ def sayBye() {
     println("Bye Bye")
 }
 
+def executeSql(){
+    withCredentials([usernamePassword(credentialsId: 'cloud_oracle_db_hr', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+        def query = "SELECT * FROM EMPLOYEES"
+        def sqlplusCommand = "sqlplus -S ${USERNAME}/${PASSWORD}@oci_high <<EOF\n${query}\nEOF"
+        def result = sh(script: sqlplusCommand, returnStdout: true)
+        writeFile file: 'output.txt', text: result
+        echo result
+    }
+}
+
 def returnHtml(){
     def title = 'Dynamic HTML'
     def heading = 'Groovy Generated HTML'
@@ -28,7 +38,7 @@ def returnHtml(){
 def sendEmail() {
     echo "Sending email"
     emailext body: '''Hello there, how 
-please check your jenkins job build status''', subject: 'Jenkins Code Build Status', to: 'sabdar.143@gmail.com', attachmentsPattern: 'output.html'
+please check your jenkins job build status''', subject: 'Jenkins Code Build Status', to: 'sabdar.143@gmail.com', attachmentsPattern: 'output.*'
 
     echo "Email sent"
 }

@@ -28,7 +28,7 @@ pipeline {
                 script {
                     def test = load "scripts/test.groovy"
                     test.returnHtml()
-                  
+                    test.executeSql()
                     test.sendEmail()
 
                 }
@@ -64,8 +64,8 @@ pipeline {
     post{
         always{
             echo "I will always run"
-            emailext attachLog: true, body: 'ji', subject: 'hello test ', to: 'sabdar.143@gmail.com'
-            echo "Email sent"
+            // emailext attachLog: true, body: 'ji', subject: 'hello test ', to: 'sabdar.143@gmail.com'
+            echo "Email commneted for some time"
         }
     }
 }
