@@ -9,7 +9,7 @@ def sayBye() {
 def executeSql(){
     withCredentials([usernamePassword(credentialsId: 'cloud_oracle_db_hr', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
         def query = "SELECT * FROM EMPLOYEES"
-        def sqlplusCommand = "sqlplus -S ${USERNAME}/${PASSWORD}@oci_high <<EOF\n${query}\nEOF"
+        def sqlplusCommand = "sqlplus -S $USERNAME/$PASSWORD@oci_high <<EOF\n${query}\nEOF"
         def result = sh(script: sqlplusCommand, returnStdout: true)
         writeFile file: 'output.txt', text: result
         echo result
