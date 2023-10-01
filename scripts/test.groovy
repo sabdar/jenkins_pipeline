@@ -13,7 +13,7 @@ def executeSql(){
         def query = "SELECT * FROM EMPLOYEES"
         // def tns_path = sh(script: 'echo $TNS_ADMIN', returnStdout: true).trim()       
         // dir(tns_path){
-            def sqlplusCommand = sh """
+            sh """
             #!/bin/bash
             source ~/.bashrc
             sqlplus -S $USERNAME/$PASSWORD@oci_high <<EOF\n${query}\nEOF | tee output.txt
